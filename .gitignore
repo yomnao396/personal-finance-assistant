@@ -1,0 +1,12 @@
+﻿.venv/
+__pycache__/
+*.pyc
+.env
+*.db
+data/*.db
+models/knowledge_index.joblib
+data/evaluation/questionnaire_responses.csv
+.vscode/
+
+# Generated evaluation and benchmark reports
+reports/

@@ -1,0 +1,213 @@
+{
+  "about": "Verified financial-education notes for the assistant's retrieval (RAG). Every passage paraphrases the cited page; sources were opened and checked on 2026-10-25. Add or correct entries here, then rebuild the index: python -m scripts.build_knowledge_index",
+  "entries": [
+    {
+      "id": "emergency-fund",
+      "title": {"en": "Emergency funds", "ar": "صندوق الطوارئ"},
+      "source": {
+        "publisher": "Consumer Financial Protection Bureau (CFPB)",
+        "title": "An essential guide to building an emergency fund",
+        "url": "https://www.consumerfinance.gov/an-essential-guide-to-building-an-emergency-fund/",
+        "checked": "2026-10-25"
+      },
+      "passages": [
+        {
+          "en": "An emergency fund is cash set aside specifically for unplanned expenses or financial emergencies, such as car or home repairs, medical bills, or a loss of income.",
+          "ar": "صندوق الطوارئ هو مبلغ نقدي يُخصَّص تحديدًا للنفقات غير المخطط لها أو الطوارئ المالية، مثل إصلاح السيارة أو المنزل أو الفواتير الطبية أو فقدان الدخل."
+        },
+        {
+          "en": "There is no single right amount for an emergency fund: it depends on your situation. One way to set a target is to look at the unexpected expenses you have had in the past and what they cost. Even a small amount gives some financial security.",
+          "ar": "لا يوجد مبلغ واحد صحيح لصندوق الطوارئ، فهو يعتمد على وضعك. إحدى طرق تحديد الهدف أن تراجع النفقات المفاجئة التي واجهتها سابقًا وكم كلّفتك. وحتى المبلغ الصغير يمنحك قدرًا من الأمان المالي."
+        },
+        {
+          "en": "Ways to build an emergency fund: set a specific savings goal and contribute consistently while tracking progress; move extra money to savings in weeks when more comes in; save one-time money such as a tax refund or a cash gift; and automate saving with a recurring transfer from your current account to savings.",
+          "ar": "طرق بناء صندوق الطوارئ: حدّد هدف ادخار واضحًا وساهم فيه بانتظام مع متابعة تقدمك، وحوّل المال الزائد إلى الادخار في الأسابيع التي يزيد فيها دخلك، وادّخر المبالغ التي تأتي مرة واحدة مثل استرداد الضرائب أو الهدايا النقدية، واجعل الادخار تلقائيًا بتحويل متكرر من حسابك الجاري إلى حساب الادخار."
+        }
+      ]
+    },
+    {
+      "id": "budget-steps",
+      "title": {"en": "How to create a budget", "ar": "كيف تُعدّ ميزانية"},
+      "source": {
+        "publisher": "Consumer Financial Protection Bureau (CFPB)",
+        "title": "Budgeting: How to create a budget and stick with it",
+        "url": "https://www.consumerfinance.gov/about-us/blog/budgeting-how-to-create-a-budget-and-stick-with-it/",
+        "checked": "2026-10-25"
+      },
+      "passages": [
+        {
+          "en": "Creating a budget takes four steps: list every source of income (where your money comes from); track your spending over time, including small purchases, to see where your money goes; check when each bill is due compared with when you are paid; then combine income, spending and bill dates into one realistic budget.",
+          "ar": "إعداد الميزانية يتم في أربع خطوات: اكتب كل مصادر دخلك (من أين يأتي مالك)، ثم تتبّع إنفاقك لفترة بما في ذلك المشتريات الصغيرة لتعرف أين يذهب مالك، ثم راجع مواعيد استحقاق كل فاتورة مقارنة بموعد قبض دخلك، ثم اجمع الدخل والإنفاق ومواعيد الفواتير في ميزانية واحدة واقعية."
+        },
+        {
+          "en": "To stick with a budget: use a tracking method that fits your routine, review your spending habits to find places to cut back, set a goal with small rewards along the way, and build a support system of people who can help you.",
+          "ar": "للالتزام بالميزانية: استخدم طريقة متابعة تناسب روتينك، وراجع عاداتك في الإنفاق لتجد ما يمكن تقليله، وضع لنفسك هدفًا مع مكافآت صغيرة على الطريق، وكوّن شبكة دعم من أشخاص يمكنهم مساعدتك."
+        }
+      ]
+    },
+    {
+      "id": "budget-503020",
+      "title": {"en": "The 50/30/20 and other percentage budgets", "ar": "ميزانية 50/30/20 والميزانيات بالنسب"},
+      "source": {
+        "publisher": "Duke University, Office of Student Loans & Personal Finance",
+        "title": "Budgeting & Spending Plans",
+        "url": "https://personalfinance.duke.edu/personal-finance-foundations/budgeting-spending-plans/",
+        "checked": "2026-10-25"
+      },
+      "passages": [
+        {
+          "en": "The 50/30/20 budget splits income into three parts: 50% for needs, 30% for wants, and 20% for savings goals.",
+          "ar": "ميزانية 50/30/20 تقسم الدخل إلى ثلاثة أجزاء: 50% للاحتياجات، و30% للرغبات، و20% لأهداف الادخار."
+        },
+        {
+          "en": "Another percentage budget is 70/20/10: 70% of income for all expenses, 20% for savings goals, and 10% to pay down debt. Percentage budgets suit people with many financial responsibilities.",
+          "ar": "من الميزانيات بالنسب أيضًا 70/20/10: ‏70% من الدخل لكل المصروفات، و20% لأهداف الادخار، و10% لسداد الديون. وتناسب الميزانيات بالنسب من لديهم مسؤوليات مالية كثيرة."
+        },
+        {
+          "en": "A budget is an itemized summary of likely income and expenses for a period of time. Track your purchases for at least a month before building one. If the budget does not balance, set a cap on your 'want' expenses.",
+          "ar": "الميزانية ملخص مفصّل للدخل والمصروفات المتوقعة لفترة زمنية. تتبّع مشترياتك لمدة شهر على الأقل قبل إعدادها. وإذا لم تتوازن الميزانية فضع حدًا أقصى لمصروفات الرغبات."
+        },
+        {
+          "en": "In zero-based budgeting every unit of income is given a job within the budget period, so the plan ends the period at zero unassigned money.",
+          "ar": "في الميزانية الصفرية يُخصَّص كل جزء من الدخل لغرض محدد خلال فترة الميزانية، فتنتهي الفترة دون مال غير مخصص."
+        }
+      ]
+    },
+    {
+      "id": "extra-income-students",
+      "title": {"en": "Extra income for students", "ar": "دخل إضافي للطلاب"},
+      "source": {
+        "publisher": "Duke University, Office of Student Loans & Personal Finance",
+        "title": "Budgeting & Spending Plans",
+        "url": "https://personalfinance.duke.edu/personal-finance-foundations/budgeting-spending-plans/",
+        "checked": "2026-10-25"
+      },
+      "passages": [
+        {
+          "en": "Flexible side work such as tutoring or house sitting can add income. A full-time student is usually not in a position to work more than about 20 hours a week.",
+          "ar": "يمكن للأعمال الجانبية المرنة مثل الدروس الخصوصية أو رعاية المنازل أن تضيف دخلًا. والطالب المتفرغ عادةً لا يستطيع العمل أكثر من نحو 20 ساعة في الأسبوع."
+        }
+      ]
+    },
+    {
+      "id": "compound-interest",
+      "title": {"en": "Compound interest", "ar": "الفائدة المركبة"},
+      "source": {
+        "publisher": "Consumer Financial Protection Bureau (CFPB)",
+        "title": "How does compound interest work?",
+        "url": "https://www.consumerfinance.gov/ask-cfpb/how-does-compound-interest-work-en-1683/",
+        "checked": "2026-10-25"
+      },
+      "passages": [
+        {
+          "en": "Compound interest means you earn interest on the money you saved and also on the interest you earned along the way. Example: 1,000 at 5% a year, calculated once a year, becomes 1,050 after one year and 1,102.50 after two years, because the second year's 5% is applied to 1,050.",
+          "ar": "الفائدة المركبة تعني أنك تكسب فائدة على المال الذي ادّخرته وأيضًا على الفائدة التي كسبتها في الطريق. مثال: 1,000 بفائدة 5% سنويًا تُحسب مرة في السنة تصبح 1,050 بعد سنة و1,102.50 بعد سنتين، لأن نسبة 5% في السنة الثانية تُطبّق على 1,050."
+        },
+        {
+          "en": "Savings grow faster with compound interest when interest is compounded more often, when the rate is higher, or when you add to the starting amount.",
+          "ar": "تنمو المدخرات أسرع مع الفائدة المركبة كلما احتُسبت الفائدة بشكل أكثر تكرارًا، أو كان المعدل أعلى، أو أضفت إلى المبلغ الأصلي."
+        }
+      ]
+    },
+    {
+      "id": "compound-interest-fdic",
+      "title": {"en": "Principal and interest", "ar": "أصل المبلغ والفائدة"},
+      "source": {
+        "publisher": "Federal Deposit Insurance Corporation (FDIC)",
+        "title": "Money Smart — Chapter 5: Compound Interest",
+        "url": "https://www.fdic.gov/consumer-resource-center/chapter-5-compound-interest",
+        "checked": "2026-10-25"
+      },
+      "passages": [
+        {
+          "en": "The principal is the money you deposit; interest is what the bank pays you for keeping it there. With compound interest, every time you earn interest it is added to your principal. The higher the interest rate, and the longer the money stays in the account, the more it grows.",
+          "ar": "أصل المبلغ هو المال الذي تودعه، والفائدة هي ما يدفعه لك البنك مقابل إبقائه لديه. مع الفائدة المركبة تُضاف الفائدة إلى أصل المبلغ في كل مرة تكسبها. وكلما ارتفع معدل الفائدة وطالت مدة بقاء المال في الحساب زاد نموه."
+        }
+      ]
+    },
+    {
+      "id": "simple-interest",
+      "title": {"en": "Simple interest", "ar": "الفائدة البسيطة"},
+      "source": {
+        "publisher": "Consumer Financial Protection Bureau (CFPB)",
+        "title": "What's the difference between a simple interest rate and precomputed interest on an auto loan?",
+        "url": "https://www.consumerfinance.gov/ask-cfpb/whats-the-difference-between-a-simple-interest-rate-and-precomputed-interest-on-an-auto-loan-en-841/",
+        "checked": "2026-10-25"
+      },
+      "passages": [
+        {
+          "en": "With simple interest, interest is charged only on the balance you actually owe, on a daily or monthly basis. Each payment's interest is worked out from that balance, so extra payments lower the principal and reduce the interest you pay over time.",
+          "ar": "مع الفائدة البسيطة تُحتسب الفائدة فقط على الرصيد المستحق فعليًا، يوميًا أو شهريًا. وتُحسب فائدة كل دفعة من ذلك الرصيد، لذلك تُخفّض الدفعات الإضافية أصل الدين وتقلل الفائدة التي تدفعها مع الوقت."
+        }
+      ]
+    },
+    {
+      "id": "debt-repayment",
+      "title": {"en": "Paying off debt: two methods", "ar": "سداد الديون: طريقتان"},
+      "source": {
+        "publisher": "Consumer Financial Protection Bureau (CFPB)",
+        "title": "How to reduce your debt",
+        "url": "https://www.consumerfinance.gov/archive/blog/how-reduce-your-debt/",
+        "checked": "2026-10-25"
+      },
+      "passages": [
+        {
+          "en": "Highest-interest-rate first: pay the minimum on every debt and put extra money on the debt with the highest rate, such as a credit card. This can save money in the long run, but progress may feel slow at first.",
+          "ar": "البدء بأعلى فائدة: ادفع الحد الأدنى على كل دين وضع المال الإضافي على الدين ذي الفائدة الأعلى، مثل بطاقة الائتمان. قد يوفّر هذا المال على المدى الطويل، لكن التقدم قد يبدو بطيئًا في البداية."
+        },
+        {
+          "en": "Snowball method: pay the minimum on every debt, put all extra money on the smallest balance, then roll the freed-up payment into the next smallest. You see progress quickly, but you may pay more in the long run.",
+          "ar": "طريقة كرة الثلج: ادفع الحد الأدنى على كل دين، وضع كل المال الإضافي على أصغر رصيد، ثم انقل الدفعة التي تحررت إلى الدين الأصغر التالي. ترى تقدمًا سريعًا، لكنك قد تدفع أكثر على المدى الطويل."
+        }
+      ]
+    },
+    {
+      "id": "inflation",
+      "title": {"en": "Inflation", "ar": "التضخم"},
+      "source": {
+        "publisher": "International Monetary Fund (IMF), Finance & Development",
+        "title": "Inflation: Prices on the Rise (Ceyda Oner)",
+        "url": "https://www.imf.org/en/Publications/fandd/issues/Series/Back-to-Basics/Inflation",
+        "checked": "2026-10-25"
+      },
+      "passages": [
+        {
+          "en": "Inflation is the rate at which prices increase over a period of time, usually measured over a year. When income does not rise as fast as prices, purchasing power falls: the same money buys less. For example, a fixed 5% yearly increase loses purchasing power if inflation is above 5%.",
+          "ar": "التضخم هو معدل ارتفاع الأسعار خلال فترة زمنية، ويُقاس عادةً على مدى سنة. وعندما لا يرتفع الدخل بسرعة ارتفاع الأسعار تنخفض القوة الشرائية، أي أن المال نفسه يشتري أقل. مثلًا، زيادة سنوية ثابتة بنسبة 5% تفقد قوتها الشرائية إذا كان التضخم أعلى من 5%."
+        }
+      ]
+    },
+    {
+      "id": "islamic-finance",
+      "title": {"en": "Principles of Islamic finance", "ar": "مبادئ التمويل الإسلامي"},
+      "source": {
+        "publisher": "International Monetary Fund (IMF), Finance & Development, Dec 2010",
+        "title": "Put to the Test (Maher Hasan and Jemma Dridi)",
+        "url": "https://www.imf.org/external/pubs/ft/fandd/2010/12/hasan.htm",
+        "checked": "2026-10-25"
+      },
+      "passages": [
+        {
+          "en": "In Islamic finance, charging interest is prohibited and the people involved are expected to share profits and losses. Islamic banking is asset based: transactions are built on the exchange or ownership of real assets, which keeps it close to the real economy, unlike conventional debt-based intermediation that transfers risk.",
+          "ar": "في التمويل الإسلامي يُحرَّم تقاضي الفائدة، ويُتوقع من الأطراف المشاركة تقاسم الأرباح والخسائر. والصيرفة الإسلامية قائمة على الأصول: تُبنى المعاملات على تبادل أصول حقيقية أو تملّكها، مما يبقيها قريبة من الاقتصاد الحقيقي، بخلاف الوساطة التقليدية القائمة على الدين ونقل المخاطر."
+        }
+      ]
+    },
+    {
+      "id": "islamic-finance-risk-sharing",
+      "title": {"en": "Risk sharing in Islamic finance", "ar": "تقاسم المخاطر في التمويل الإسلامي"},
+      "source": {
+        "publisher": "International Monetary Fund (IMF) Blog, 6 April 2015",
+        "title": "The Promise of Islamic Finance: Further Inclusion with Stability (Norat, Pinon and Zeidane)",
+        "url": "https://www.imf.org/en/Blogs/Articles/2015/04/06/the-promise-of-islamic-finance-further-inclusion-with-stability",
+        "checked": "2026-10-25"
+      },
+      "passages": [
+        {
+          "en": "Islamic finance follows Shari'ah, which bans interest, speculation, gambling and short sales. Its core idea is risk sharing: lenders share in both the risks and the rewards of what they finance, and financing is linked to real assets.",
+          "ar": "يتبع التمويل الإسلامي أحكام الشريعة التي تحظر الفائدة والمضاربة والقمار والبيع على المكشوف. وفكرته الأساسية تقاسم المخاطر: يشارك الممولون في مخاطر ما يموّلونه وفي عوائده، ويرتبط التمويل بأصول حقيقية."
+        }
+      ]
+    }
+  ]
+}

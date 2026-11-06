@@ -1,0 +1,37 @@
+{
+  "about": "Benchmark for the proposal's evaluation plan (Table 3.2). Expected numbers are for the sample user created by scripts/seed_sample.py (three months: 2550, 2870, 3200 spent; 6000 income a month; goal 'Laptop and course' 19000, 3000 saved, 4 months left). 'difficulty' groups results as the proposal asks (easy = one step, hard = multi-step).",
+  "questions": [
+    {"id": "N01", "type": "numeric", "difficulty": "easy", "question": "How much did I spend on food this month?", "expected": 1800},
+    {"id": "N02", "type": "numeric", "difficulty": "easy", "question": "What is my total spending this month?", "expected": 3200},
+    {"id": "N03", "type": "numeric", "difficulty": "easy", "question": "How much did I save this month?", "expected": 2800},
+    {"id": "N04", "type": "numeric", "difficulty": "easy", "question": "What is my monthly income?", "expected": 6000},
+    {"id": "N05", "type": "numeric", "difficulty": "easy", "question": "How much did I spend on bills this month?", "expected": 300},
+    {"id": "N06", "type": "numeric", "difficulty": "easy", "question": "What is the simple interest on 10,000 at 5% a year for 3 years?", "expected": 1500},
+    {"id": "N07", "type": "numeric", "difficulty": "hard", "question": "What is my saving rate this month, in percent?", "expected": 46.67},
+    {"id": "N08", "type": "numeric", "difficulty": "hard", "question": "What percentage of my spending this month went to food?", "expected": 56.25},
+    {"id": "N09", "type": "numeric", "difficulty": "hard", "question": "What is my average monthly spending over the last three months?", "expected": 2873.33},
+    {"id": "N10", "type": "numeric", "difficulty": "hard", "question": "How much do I need to save each month to reach my laptop goal on time?", "expected": 4000},
+    {"id": "N11", "type": "numeric", "difficulty": "hard", "question": "By how much per month am I short of what my goal needs?", "expected": 1200},
+    {"id": "N12", "type": "numeric", "difficulty": "hard", "question": "How much did I spend on restaurants in total over the last three months?", "expected": 1950},
+    {"id": "N13", "type": "numeric", "difficulty": "hard", "question": "How much will 1,000 grow to in 2 years at 5% interest compounded once a year?", "expected": 1102.5},
+    {"id": "N14", "type": "numeric", "difficulty": "hard", "question": "How much more did I spend this month than two months ago?", "expected": 650},
+
+    {"id": "F01", "type": "fact", "difficulty": "easy", "question": "What is an emergency fund?", "entry": "emergency-fund", "keywords": ["unplanned", "unexpected", "emergenc"]},
+    {"id": "F02", "type": "fact", "difficulty": "easy", "question": "What is the 50/30/20 budget rule?", "entry": "budget-503020", "keywords": ["50", "30", "20"]},
+    {"id": "F03", "type": "fact", "difficulty": "easy", "question": "What is compound interest?", "entry": "compound-interest", "keywords": ["interest on", "interest you earn", "earned"]},
+    {"id": "F04", "type": "fact", "difficulty": "easy", "question": "What is inflation?", "entry": "inflation", "keywords": ["price"]},
+    {"id": "F05", "type": "fact", "difficulty": "hard", "question": "I have a credit card and a small loan. Which debt should I pay off first?", "entry": "debt-repayment", "keywords": ["highest", "smallest", "snowball"]},
+    {"id": "F06", "type": "fact", "difficulty": "hard", "question": "Is charging interest allowed in Islamic finance, and what replaces it?", "entry": "islamic-finance", "keywords": ["prohibit", "not allowed", "share", "asset"]},
+    {"id": "F07", "type": "fact", "difficulty": "hard", "question": "What steps should I follow to create a budget?", "entry": "budget-steps", "keywords": ["income", "track", "bill"]},
+    {"id": "F08", "type": "fact", "difficulty": "hard", "question": "How many hours a week can a full-time student usually work?", "entry": "extra-income-students", "keywords": ["20"]},
+    {"id": "F09", "type": "fact", "difficulty": "easy", "question": "ما هي الفائدة المركبة؟", "entry": "compound-interest", "keywords": ["فائدة", "الفائدة"]},
+    {"id": "F10", "type": "fact", "difficulty": "hard", "question": "كيف أبني صندوق طوارئ؟", "entry": "emergency-fund", "keywords": ["هدف", "تلقائي", "ادخار"]},
+
+    {"id": "U01", "type": "unanswerable", "difficulty": "easy", "question": "What will the US dollar to Sudanese pound exchange rate be next month?"},
+    {"id": "U02", "type": "unanswerable", "difficulty": "easy", "question": "What is the savings interest rate at Bank of Khartoum today?"},
+    {"id": "U03", "type": "unanswerable", "difficulty": "easy", "question": "Which stock will go up tomorrow?"},
+    {"id": "U04", "type": "unanswerable", "difficulty": "hard", "question": "What was the inflation rate in Sudan last month?"},
+    {"id": "U05", "type": "unanswerable", "difficulty": "hard", "question": "How much does a new MacBook Air cost today?"},
+    {"id": "U06", "type": "unanswerable", "difficulty": "easy", "question": "كم سعر جرام الذهب اليوم؟"}
+  ]
+}
