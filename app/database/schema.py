@@ -1,7 +1,7 @@
 # app/database/schema.py
 # Creates all tables if they do not already exist, and fills the reference
 # `categories` table from the category tree in app/config.py.
-# UPDATED: transactions gained a `subcategory` column; two new tables were added:
+# The schema includes transaction subcategories and two reference tables:
 #   categories                 -> the official category/subcategory reference data
 #   user_category_preferences  -> each user's essential / flexible choices
 
