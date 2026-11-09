@@ -1,5 +1,5 @@
 # app/ml/recommendation_rules.py
-# NEW FILE — the EXPLICIT financial criteria that turn a financial scenario into
+# Explicit financial criteria that turn a financial scenario into
 # multi-label recommendation targets.
 #
 # These rules are used in three places:
