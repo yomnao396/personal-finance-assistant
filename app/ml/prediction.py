@@ -1,6 +1,6 @@
 # app/ml/prediction.py
-# Next-month SPENDING FORECAST — the one honest ML job in the project: learn the
-# user's own spending pattern and predict the next month WITH its uncertainty.
+# Next-month SPENDING FORECAST — the forecasting component learns the
+# user's own spending pattern and predicts the next month WITH its uncertainty.
 #
 # Two outputs:
 #   forecast_spending(user_id) -> total next month as mu (expected) + sigma (spread);
