@@ -1,7 +1,7 @@
 # app/config.py
 # Central place for paths and constants so every file agrees on where things are.
-# UPDATED: the old flat CATEGORIES list is replaced by a two-level
-# category / subcategory tree. Categories are DATA, not ML predictions.
+# Categories are organised in a two-level tree of main categories and
+# subcategories. They are reference data, not machine-learning predictions.
 from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent   # the personal_finance_ai/ folder
 DATA_DIR = BASE_DIR / "data"
