@@ -1,9 +1,9 @@
 # app/database/crud.py
 # All Create/Read/Update/Delete operations. Uses parameterized SQL (the ? marks)
 # which prevents SQL injection.
-# UPDATED: transactions/recurring expenses carry a validated subcategory,
-#          income carries a validated source, and there is a full CRUD set for
-#          the `categories` reference table and `user_category_preferences`.
+# Transactions and recurring expenses carry validated subcategories; income
+# carries a validated source. CRUD operations also cover the `categories`
+# reference table and `user_category_preferences`.
 from app.database.connection import get_connection
 from app.config import validate_category, validate_income_source
 # ---------- users ---------
