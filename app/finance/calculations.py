@@ -4,8 +4,7 @@
 # They take plain Python data (no database, no LLM)
 # so they are easy to test and always give the exact same answer.
 #
-# UPDATED:
-# added subcategory and per-month helpers used by the expanded analysis.
+# Includes subcategory and per-month helpers used by the expanded analysis.
 
 def calculate_total_expenses(transactions):
     # Sum of all transaction amounts.
