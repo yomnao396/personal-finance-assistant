@@ -3,7 +3,8 @@
 # The Financial Analysis Engine: pulls the user's data from the database,
 # runs the pure calculation functions, and returns one structured dictionary.
 #
-# UPDATED:
+# The engine preserves the original top-level fields and extends the
+# returned analysis with current-month figures and additional summaries:
 # * the original top-level keys (income, expenses, savings, savings_rate,
 #   categories, recurring_expenses, prediction) are unchanged in meaning for a
 #   single-month database, so everything built on them keeps working;
