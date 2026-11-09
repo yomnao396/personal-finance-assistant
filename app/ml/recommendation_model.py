@@ -1,6 +1,6 @@
 # app/ml/recommendation_model.py
-# NEW FILE — the Random Forest MULTI-LABEL RECOMMENDATION model.
-# It REPLACES the removed TF-IDF + Logistic Regression expense classifier.
+# Random Forest multi-label recommendation model.
+# It predicts applicable recommendation actions from engineered financial features.
 #
 # WHAT IT DOES:
 # Given one user's financial STATE (28 engineered features), it predicts
