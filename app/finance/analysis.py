@@ -1,6 +1,6 @@
 # app/finance/analysis.py
 #
-# NEW FILE — the three expanded analyses required by the updated design:
+# Provides three complementary financial analyses:
 #
 # 1. Category Spending Analysis (totals, %, ranking, subcategories, dominance)
 # 2. Income Analysis (sources, %, primary source, history, trend)
