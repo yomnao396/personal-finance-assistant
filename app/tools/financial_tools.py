@@ -4,9 +4,8 @@
 # Qwen is told these exist and calls them to get real data.
 # Each tool works on its own WITHOUT the LLM.
 #
-# UPDATED: classify_transaction was REMOVED with the expense classifier.
-# Six new tools expose the expanded analysis, the recommendation plan and the
-# user's essential-expense preferences.
+# Six tools expose the financial analysis, recommendation plan, and
+# the user's essential-expense preferences.
 
 from app.database.crud import (
     get_transactions as _get_txns,
