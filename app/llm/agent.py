@@ -43,7 +43,7 @@ ONE_LANGUAGE = {"en": "Write that answer again in English only.",
                 "ar": "Write that answer again in Arabic only."}
 NO_ANSWER = {
     "en": "I could not put together an answer to that. Please try asking it another way.",
-    "ar": "Ù„Ù… Ø£ØªÙ…ÙƒÙ† Ù…Ù† ØªÙƒÙˆÙŠÙ† Ø¥Ø¬Ø§Ø¨Ø© Ø¹Ù„Ù‰ Ø°Ù„Ùƒ. ÙŠÙØ±Ø¬Ù‰ Ø¥Ø¹Ø§Ø¯Ø© ØµÙŠØ§ØºØ© Ø§Ù„Ø³Ø¤Ø§Ù„.",
+    "ar": "لست متأكدًا أنني فهمت سؤالك، وأفضّل أن أسأل بدل أن أخمّن. هل يمكنك توضيح ما تريد معرفته؟ مثلًا: أي رقم تقصد (المصروفات، الدخل، الفائض النقدي، هدف معيّن)، ولأي شهر أو فئة.",
 }
 
 # When to put knowledge-base notes in front of the model. Notes about budgeting
@@ -383,13 +383,13 @@ def _verified_or_records(answer, question, tool_results, user_id, language, hist
     from app.services.direct_answers import answer as direct_answer_for
     month_words = f" {asked_month}" if asked_month else ""
     found = direct_answer_for(
-        ("?? ???? ??? ???? ??? ??????? ??" if language == "ar"
+        ("كم دخلي وكم صرفت وكم المتبقي في" if language == "ar"
          else "How much did I earn, spend and have left in") + month_words + "?",
         user_id, None, language)
     note = {
         "en": "I could not verify the figures in my first answer against your records, so here they are "
               "straight from your saved data:",
-        "ar": "?? ????? ?? ?????? ?? ??????? ?? ?????? ?????? ????? ??????? ???? ??? ?? ??????? ?? ??????? ???????? ??????:",
+        "ar": "لم أتمكن من التحقق من الأرقام في إجابتي الأولى مقابل سجلاتك، لذلك هذه هي الأرقام من بياناتك المحفوظة مباشرة:",
     }.get(language, "")
     if found:
         return note + "\n" + found["answer"], bad, found
