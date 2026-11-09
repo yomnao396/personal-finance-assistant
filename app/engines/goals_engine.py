@@ -1,7 +1,7 @@
 # app/engines/goals_engine.py
 # Deterministic logic for financial goals (no ML, no LLM).
-# UPDATED: added months_remaining / required monthly saving / SAVING GAP, which the
-# Feature Engineering step and Recommendation Engine both need.
+# Goal calculations also provide the remaining months, required monthly
+# savings, and saving gap used by feature engineering and recommendations.
 
 import math
 from datetime import date
