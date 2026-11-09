@@ -33,9 +33,9 @@ import argparse
 import csv
 from collections import defaultdict
 from datetime import date
- 
+
 import pandas as pd
- 
+
 from app.config import CATEGORY_TREE, DATA_DIR, INCOME_SOURCES
 from app.finance.analysis import (analyze_categories, analyze_income,
                                   analyze_spending_patterns)
@@ -45,9 +45,9 @@ from app.engines.goals_engine import calculate_goal_gap
 from app.ml.feature_engineering import FEATURE_COLUMNS, LABEL_COLUMNS, build_features
 from app.ml.recommendation_rules import recommend_labels
 from scripts.generate_recommendation_dataset import REQUIRED_COMBOS, combo_key, validate
- 
+
 OUT_PATH = DATA_DIR / "sample" / "recommendation_scenarios_kaggle.csv"
- 
+
 # ---------------------------------------------------------------------------
 # Map the dataset's category names onto OUR category tree.
 # Keys are lower-case; edit this for your dataset.
@@ -85,7 +85,7 @@ CATEGORY_MAP = {
     "other": "Others", "others": "Others", "misc": "Others", "miscellaneous": "Others",
     "gift": "Others", "donation": "Others", "cash": "Others",
 }
- 
+
 # Map dataset income descriptions onto our income sources.
 INCOME_SOURCE_MAP = {
     "salary": "Salary", "wage": "Salary", "payroll": "Salary", "income": "Salary",
@@ -93,11 +93,11 @@ INCOME_SOURCE_MAP = {
     "gift": "Gifts", "gifts": "Gifts", "bonus": "Gifts",
     "family": "From Dad", "parents": "From Dad", "dad": "From Dad",
 }
- 
+
 # Goal scenarios attached to every user-month (multiplier of monthly income, months).
 GOAL_GRID = [(1.0, 3), (2.0, 4), (3.0, 6), (5.0, 6), (8.0, 12)]
- 
- 
+
+
 def map_category(raw):
     """Dataset category name -> our category. Unknown names become 'Others'."""
     if raw is None:
@@ -112,8 +112,8 @@ def map_category(raw):
         if fragment in key:
             return mapped
     return "Others"
- 
- 
+
+
 def map_subcategory(category, raw):
     """Keep the dataset's own label only when it is a real subcategory of ours."""
     if raw is None:
@@ -123,8 +123,8 @@ def map_subcategory(category, raw):
         if key == sub.lower():
             return sub
     return None
- 
- 
+
+
 def map_income_source(raw):
     if raw is None:
         return "Other"
@@ -133,8 +133,8 @@ def map_income_source(raw):
         if fragment in key:
             return source
     return "Other" if "Other" in INCOME_SOURCES else INCOME_SOURCES[-1]
- 
- 
+
+
 def inspect(csv_path):
     """Print the columns and a preview so you can choose the right column names."""
     df = pd.read_csv(csv_path)
@@ -145,8 +145,8 @@ def inspect(csv_path):
         print(f"  {column:<28} e.g. {sample}")
     print("\nFirst 5 rows:")
     print(df.head().to_string())
- 
- 
+
+
 def load_rows(csv_path, date_col, amount_col, category_col, subcategory_col,
               type_col, income_label, user_col, source_col):
     """Read the CSV and split it into per-user expense transactions and income rows."""
@@ -154,11 +154,11 @@ def load_rows(csv_path, date_col, amount_col, category_col, subcategory_col,
     for required in (date_col, amount_col):
         if required not in df.columns:
             raise SystemExit(f"column {required!r} not in {list(df.columns)}")
- 
+
     df[date_col] = pd.to_datetime(df[date_col], errors="coerce")
     df = df.dropna(subset=[date_col])
     df[amount_col] = pd.to_numeric(df[amount_col], errors="coerce").fillna(0.0)
- 
+
     expenses = defaultdict(list)
     incomes = defaultdict(list)
     for _, row in df.iterrows():
@@ -166,7 +166,7 @@ def load_rows(csv_path, date_col, amount_col, category_col, subcategory_col,
         stamp = row[date_col].strftime("%Y-%m-%d")
         amount = float(row[amount_col])
         raw_category = row[category_col] if category_col in df.columns else None
- 
+
         # income vs expense
         is_income = False
         if type_col and type_col in df.columns:
@@ -176,11 +176,11 @@ def load_rows(csv_path, date_col, amount_col, category_col, subcategory_col,
         if not is_income and str(raw_category).strip().lower() in (
                 "income", "salary", "wage", "wages", "payroll"):
             is_income = True
- 
+
         amount = abs(amount)
         if amount <= 0:
             continue
- 
+
         if is_income:
             raw_source = row[source_col] if source_col and source_col in df.columns \
                 else raw_category
@@ -194,8 +194,8 @@ def load_rows(csv_path, date_col, amount_col, category_col, subcategory_col,
                                    "subcategory": map_subcategory(category, raw_sub),
                                    "date": stamp})
     return expenses, incomes
- 
- 
+
+
 def scenarios_for_user(transactions, income_records, min_months=3):
     """One scenario per anchor month (using that month as 'current' and the
     earlier months as history), multiplied by the goal grid."""
@@ -207,7 +207,7 @@ def scenarios_for_user(transactions, income_records, min_months=3):
         history = [t for t in transactions if t["date"][:7] in window]
         current = [t for t in transactions if t["date"][:7] == anchor]
         income_window = [r for r in income_records if r["date"][:7] in window]
- 
+
         income = round(sum(r["amount"] for r in income_window
                            if r["date"][:7] == anchor), 2)
         if income <= 0:
@@ -217,7 +217,7 @@ def scenarios_for_user(transactions, income_records, min_months=3):
             continue
         savings = calculate_savings(income, expenses)
         savings_rate = calculate_savings_rate(income, savings)
- 
+
         base = {
             "income": income, "expenses": expenses, "savings": savings,
             "savings_rate": savings_rate,
@@ -227,7 +227,7 @@ def scenarios_for_user(transactions, income_records, min_months=3):
             "spending_patterns": analyze_spending_patterns(history),
         }
         anchor_date = date(int(anchor[:4]), int(anchor[5:7]), 1)
- 
+
         for multiplier, months_ahead in GOAL_GRID:
             target = round(income * multiplier, 2)
             year = anchor_date.year + (anchor_date.month - 1 + months_ahead) // 12
@@ -246,8 +246,8 @@ def scenarios_for_user(transactions, income_records, min_months=3):
             row["rule_reason"] = " | ".join(reasons)
             rows.append(row)
     return rows
- 
- 
+
+
 def convert(csv_path, out_path=OUT_PATH, **columns):
     expenses, incomes = load_rows(csv_path, **columns)
     rows = []
@@ -256,7 +256,7 @@ def convert(csv_path, out_path=OUT_PATH, **columns):
     if not rows:
         raise SystemExit("no scenarios were produced — check the column names and that "
                          "the dataset has at least 3 months of data per user")
- 
+
     problems, counts, combos = validate(rows)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     header = FEATURE_COLUMNS + LABEL_COLUMNS + ["archetype", "months_of_history",
@@ -266,7 +266,7 @@ def convert(csv_path, out_path=OUT_PATH, **columns):
         writer.writeheader()
         for row in rows:
             writer.writerow({k: row[k] for k in header})
- 
+
     print(f"Wrote {len(rows)} scenarios from {len(expenses)} user(s) -> {out_path}")
     print("\nPositive rows per label:")
     for name in LABEL_COLUMNS:
@@ -285,8 +285,8 @@ def convert(csv_path, out_path=OUT_PATH, **columns):
     else:
         print("\nValidation: PASSED — dataset is usable")
     return out_path, problems
- 
- 
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Turn a Kaggle transaction CSV into recommendation scenarios")
@@ -304,7 +304,7 @@ if __name__ == "__main__":
                         help="column naming the income source")
     parser.add_argument("--out", default=str(OUT_PATH))
     args = parser.parse_args()
- 
+
     if args.inspect:
         inspect(args.csv)
     else:
