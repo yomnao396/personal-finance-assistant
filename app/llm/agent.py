@@ -4,11 +4,11 @@
 #
 # run_agent_detailed() also reports WHICH tools were used and WHICH sources were
 # retrieved, so the interface can show the reason and the source behind each
-# answer (proposal Â§1.6.1). Its `mode` switches parts off for the evaluation:
-#   "full"     â€” all tools, including the knowledge base (RAG)
-#   "no_rag"   â€” all tools except search_knowledge; general questions are
+# answer (proposal §1.6.1). Its `mode` switches parts off for the evaluation:
+#   "full"     — all tools, including the knowledge base (RAG)
+#   "no_rag"   — all tools except search_knowledge; general questions are
 #                answered from the model's own memory
-#   "no_tools" â€” no tools at all; the user's raw records are pasted into the
+#   "no_tools" — no tools at all; the user's raw records are pasted into the
 #                prompt and the model must do the arithmetic itself
 
 import inspect
@@ -34,10 +34,10 @@ CURRENCY = "SDG (Sudanese pounds)"
 ARABIC = re.compile(r"[\u0600-\u06FF]")
 CJK = re.compile(r"[\u3040-\u30FF\u3400-\u9FFF]")
 DOLLAR_AMOUNT = re.compile(r"(?:US)?\$\s?(\d[\d,]*(?:\.\d+)?)")
-CURRENCY_WORD = {"en": "SDG", "ar": "Ø¬.Ø³"}
+CURRENCY_WORD = {"en": "SDG", "ar": "ج.س"}
 MARKDOWN_LINK = re.compile(r"\[([^\]]+)\]\((https?://[^)\s]+)\)")
 BARE_URL = re.compile(r"(?<![(\[])https?://[^\s)\]]+")
-UNVERIFIED = {"en": "(unverified source removed)", "ar": "(Ø£ÙØ²ÙŠÙ„ Ù…ØµØ¯Ø± ØºÙŠØ± Ù…ÙˆØ«Ù‘Ù‚)"}
+UNVERIFIED = {"en": "(unverified source removed)", "ar": "(أُزيل مصدر غير موثّق)"}
 ANSWER_NOW = "Answer my question now, in one or two sentences, using only the tool results above."
 ONE_LANGUAGE = {"en": "Write that answer again in English only.",
                 "ar": "Write that answer again in Arabic only."}
@@ -58,7 +58,7 @@ PERSONAL = re.compile(
     re.IGNORECASE)
 
 DEFINITION = re.compile(r"\bwhat (?:is|are) (?:an? |the )?(?!my\b)\w+|\bdefine\b|\bmeaning of\b|"
-                        r"(?:Ù…Ø§|Ù…Ø§Ù‡Ùˆ|Ù…Ø§ Ù‡Ùˆ|Ù…Ø§ Ù‡ÙŠ|Ø§ÙŠØ´|Ø´Ù†Ùˆ) (?:Ù‡Ùˆ |Ù‡ÙŠ )?(?!Ø¯Ø®Ù„ÙŠ|Ù…ØµØ±ÙˆÙØ§ØªÙŠ)[^\sØŸ?]+|ÙŠØ¹Ù†ÙŠ Ø§ÙŠÙ‡|Ù…Ø¹Ù†ÙŠ")
+                        r"(?:ما|ماهو|ما هو|ما هي|ايش|شنو) (?:هو |هي )?(?!دخلي|مصروفاتي)[^\s؟?]+|يعني ايه|معني")
 RETRIEVED_NOTES = """Verified notes that match the user's question. If the question is a
 general money question, answer ONLY from these notes and name their source
 (publisher and title). If it is about the user's own numbers, ignore them and use
@@ -92,23 +92,23 @@ NOT_FOUND = {
     "en": ('You have no saved goal called "{asked}". Your saved goals are: {names}. Do you mean '
            "one of them? To add a new goal, use the Goals page: only its target amount and date "
            "are needed."),
-    "ar": ('Ù„Ø§ ÙŠÙˆØ¬Ø¯ Ù„Ø¯ÙŠÙƒ Ù‡Ø¯Ù Ù…Ø­ÙÙˆØ¸ Ø¨Ø§Ø³Ù… "{asked}". Ø£Ù‡Ø¯Ø§ÙÙƒ Ø§Ù„Ù…Ø­ÙÙˆØ¸Ø©: {names}. Ù‡Ù„ ØªÙ‚ØµØ¯ Ø£Ø­Ø¯Ù‡Ø§ØŸ '
-           "Ù„Ø¥Ø¶Ø§ÙØ© Ù‡Ø¯Ù Ø¬Ø¯ÙŠØ¯ Ø§Ø³ØªØ®Ø¯Ù… ØµÙØ­Ø© Ø§Ù„Ø£Ù‡Ø¯Ø§Ù: ÙŠÙƒÙÙŠ Ø§Ù„Ù…Ø¨Ù„Øº Ø§Ù„Ù…Ø³ØªÙ‡Ø¯Ù ÙˆØ§Ù„ØªØ§Ø±ÙŠØ®."),
+    "ar": ('لا يوجد لديك هدف محفوظ باسم "{asked}". أهدافك المحفوظة: {names}. هل تقصد أحدها؟ '
+           "لإضافة هدف جديد استخدم صفحة الأهداف: يكفي المبلغ المستهدف والتاريخ."),
 }
 WHICH_GOAL = {
     "en": "More than one of your saved goals matches that: {names}. Which one do you mean?",
-    "ar": "Ø£ÙƒØ«Ø± Ù…Ù† Ù‡Ø¯Ù Ù…Ø­ÙÙˆØ¸ ÙŠØ·Ø§Ø¨Ù‚ Ø°Ù„Ùƒ: {names}. Ø£ÙŠÙ‘Ù‡Ø§ ØªÙ‚ØµØ¯ØŸ",
+    "ar": "أكثر من هدف محفوظ يطابق ذلك: {names}. أيّها تقصد؟",
 }
 CHOOSE_GOAL = {
     "en": "You have {count} saved goals: {names}. Which one do you mean?",
-    "ar": "Ù„Ø¯ÙŠÙƒ {count} Ø£Ù‡Ø¯Ø§Ù Ù…Ø­ÙÙˆØ¸Ø©: {names}. Ø£ÙŠÙ‘Ù‡Ø§ ØªÙ‚ØµØ¯ØŸ",
+    "ar": "لديك {count} أهداف محفوظة: {names}. أيّها تقصد؟",
 }
 GOAL_SHORT = {
     "en": '"{name}" ({remaining:,.0f} SDG left, {deadline})',
-    "ar": '"{name}" (ÙŠØªØ¨Ù‚Ù‰ {remaining:,.0f} Ø¬.Ø³ØŒ {deadline})',
+    "ar": '"{name}" (يتبقى {remaining:,.0f} ج.س، {deadline})',
 }
-NO_DEADLINE = {"en": "no deadline", "ar": "Ø¨Ø¯ÙˆÙ† Ù…ÙˆØ¹Ø¯"}
-DUE = {"en": "due {date}", "ar": "Ù…ÙˆØ¹Ø¯Ù‡ {date}"}
+NO_DEADLINE = {"en": "no deadline", "ar": "بدون موعد"}
+DUE = {"en": "due {date}", "ar": "موعده {date}"}
 
 LANGUAGE_INSTRUCTIONS = {
     "en": "Always answer in English.",
@@ -211,10 +211,10 @@ def _for_model(question):
 
 def fix_currency(answer, language="en"):
     """Every amount in this app is in Sudanese pounds; a small model sometimes
-    still writes "$2,476". Rewrite such amounts as "2,476 SDG" (or Ø¬.Ø³)."""
+    still writes "$2,476". Rewrite such amounts as "2,476 SDG" (or ج.س)."""
     unit = CURRENCY_WORD.get(language, "SDG")
     answer = DOLLAR_AMOUNT.sub(lambda m: f"{m.group(1)} {unit}", answer or "")
-    if language == "ar":    # tool sentences say "SDG"; Arabic answers use Ø¬.Ø³
+    if language == "ar":    # tool sentences say "SDG"; Arabic answers use ج.س
         answer = re.sub(r"\bSDG\b", unit, answer)
     return answer
 
@@ -229,7 +229,7 @@ def _money_amounts(text):
 def _wrong_language(text, language):
     """An English answer written mostly in Arabic, or the other way round (a small
     model copies the language of earlier turns or of a note)."""
-    arabic = len(re.findall(r"[Ø¡-ÙŠ]", text))
+    arabic = len(re.findall(r"[ء-ي]", text))
     latin = len(re.findall(r"[A-Za-z]", text))
     if language == "en":
         return arabic > latin
@@ -240,7 +240,7 @@ def _wrong_language(text, language):
 
 def _strip_cjk(text):
     """Drop sentences written in Chinese or Japanese from an Arabic or English answer."""
-    parts = re.split(r"(?<=[.!?ã€‚ï¼ï¼ŸØŸ\n])", text or "")
+    parts = re.split(r"(?<=[.!?。！？؟\n])", text or "")
     return "".join(p for p in parts if not CJK.search(p)).strip()
 
 
@@ -252,19 +252,19 @@ def _own_numbers_question(question):
 UNVERIFIED_ANSWER = {
     "en": "I could not verify that answer against your records, so I will not show it. Try asking for one "
           "figure at a time (for example: how much did I spend in October?).",
-    "ar": "Ù„Ù… Ø£ØªÙ…ÙƒÙ† Ù…Ù† Ø§Ù„ØªØ­Ù‚Ù‚ Ù…Ù† Ù‡Ø°Ù‡ Ø§Ù„Ø¥Ø¬Ø§Ø¨Ø© Ù…Ù‚Ø§Ø¨Ù„ Ø³Ø¬Ù„Ø§ØªÙƒØŒ Ù„Ø°Ù„Ùƒ Ù„Ù† Ø£Ø¹Ø±Ø¶Ù‡Ø§. Ø¬Ø±Ù‘Ø¨ Ø£Ù† ØªØ³Ø£Ù„ Ø¹Ù† Ø±Ù‚Ù… ÙˆØ§Ø­Ø¯ ÙÙŠ ÙƒÙ„ Ù…Ø±Ø© "
-          "(Ù…Ø«Ù„Ù‹Ø§: ÙƒÙ… ØµØ±ÙØª ÙÙŠ Ø£ÙƒØªÙˆØ¨Ø±ØŸ)."}
-# "your income is 10,000", "Ø§Ù„Ø¯Ø®Ù„ Ø§Ù„Ø¥Ø¬Ù…Ø§Ù„ÙŠ Ù‡ÙŠ 10,000": a statement of the user's income.
+    "ar": "لم أتمكن من التحقق من هذه الإجابة مقابل سجلاتك، لذلك لن أعرضها. جرّب أن تسأل عن رقم واحد في كل مرة "
+          "(مثلًا: كم صرفت في أكتوبر؟)."}
+# "your income is 10,000", "الدخل الإجمالي هي 10,000": a statement of the user's income.
 INCOME_CLAIM = re.compile(r"\b(?:your|the user's|monthly|total)\s+(?:monthly\s+|total\s+)?(?:income|salary|earnings)"
                           r"\b[^\d.\n]{0,25}?(\d[\d,]*(?:\.\d+)?)|"
-                          r"(?:Ø¯Ø®Ù„Ùƒ|Ø±Ø§ØªØ¨Ùƒ|Ù…Ø±ØªØ¨Ùƒ|Ø§Ù„Ø¯Ø®Ù„ Ø§Ù„Ø´Ù‡Ø±ÙŠ|Ø§Ù„Ø¯Ø®Ù„ Ø§Ù„Ø§Ø¬Ù…Ø§Ù„ÙŠ|Ø§Ù„Ø¯Ø®Ù„ Ø§Ù„Ø¥Ø¬Ù…Ø§Ù„ÙŠ|Ù„Ù„Ø¯Ø®Ù„ Ø§Ù„Ø¥Ø¬Ù…Ø§Ù„ÙŠ|Ù„Ù„Ø¯Ø®Ù„)"
+                          r"(?:دخلك|راتبك|مرتبك|الدخل الشهري|الدخل الاجمالي|الدخل الإجمالي|للدخل الإجمالي|للدخل)"
                           r"[^\d.\n]{0,25}?(\d[\d,]*(?:\.\d+)?)")
 
 
-# "increase your monthly income by 2,053.33", "Ø¯Ø®Ù„ Ø¥Ø¶Ø§ÙÙŠ 500": an amount of CHANGE,
+# "increase your monthly income by 2,053.33", "دخل إضافي 500": an amount of CHANGE,
 # not a statement of what the income is (a correct answer was withheld for this).
 INCOME_CHANGE = re.compile(r"\b(?:increase|increasing|raise|raising|boost|grow|add|adding|extra|additional|more)\b"
-                           r"[^.\n]{0,30}$|\bby\s*$|(?:Ø²ÙŠØ§Ø¯Ù‡|Ø²ÙŠØ§Ø¯Ø©|Ø²ÙˆØ¯|Ø²ÙˆÙ‘Ø¯|ØªØ±ÙØ¹|Ø±ÙØ¹|Ø§Ø¶Ø§ÙÙŠ|Ø¥Ø¶Ø§ÙÙŠ|Ø§Ø¶Ø§ÙÙŠØ©|Ø¥Ø¶Ø§ÙÙŠØ©)[^.\n]{0,30}$")
+                           r"[^.\n]{0,30}$|\bby\s*$|(?:زياده|زيادة|زود|زوّد|ترفع|رفع|اضافي|إضافي|اضافية|إضافية)[^.\n]{0,30}$")
 
 
 def _wrong_income_claims(answer, user_id):
@@ -304,7 +304,7 @@ def _plan_figures(history):
 
 def _without_unsupported_sentences(answer, allowed):
     """The answer minus sentences whose amounts are not supported."""
-    sentences = re.split(r"(?<=[.!?ØŸ])\s+|\n+", answer or "")
+    sentences = re.split(r"(?<=[.!?؟])\s+|\n+", answer or "")
     kept = [x for x in sentences if not unsupported_amounts(x, allowed)]
     return "\n".join(k for k in kept if k.strip())
 
@@ -323,7 +323,7 @@ def _verified_or_records(answer, question, tool_results, user_id, language, hist
     if not _own_numbers_question(question) and not plan_figures:
         return answer, [], None
     month = facts.current_month(user_id)
-    allowed = list(amounts_in(question)) + [100]        # "Ã— 100" in a percentage formula
+    allowed = list(amounts_in(question)) + [100]        # "× 100" in a percentage formula
     for r in tool_results:
         allowed += amounts_in(json.dumps(r["result"], default=str))
     if month:
@@ -560,7 +560,7 @@ def _which_goal(context, language, mode):
     goals: answered without the model, so it never asks for numbers the app has."""
     how = context["how"]
     shown = context["candidates"] if how in ("ask", "choose") else context["goals"]
-    sep = " / " if language != "ar" else "ØŒ "
+    sep = " / " if language != "ar" else "، "
     if how == "choose":
         lang = language if language in CHOOSE_GOAL else "en"
         items = []
@@ -586,13 +586,13 @@ def _which_goal(context, language, mode):
 ASKS_FOR_RECORDS = re.compile(
     r"\b(?:provide|share|tell me|let me know|give me|what is|what's|what are|need to know|send)\b[^.?!\n]{0,40}"
     r"\b(?:your|the)\s+(?:current\s+|monthly\s+|typical\s+|total\s+)*(?:income|salary|spending|expenses|savings|budget)"
-    r"|(?:ÙƒÙ…|Ù…Ø§ Ù‡Ùˆ|Ù…Ø§ Ù‡ÙŠ|Ø§Ø®Ø¨Ø±Ù†ÙŠ|Ø£Ø®Ø¨Ø±Ù†ÙŠ|Ø²ÙˆØ¯Ù†ÙŠ|Ø§Ø±Ø³Ù„|Ø£Ø±Ø³Ù„)[^.ØŸ\n]{0,30}(?:Ø¯Ø®Ù„Ùƒ|Ø±Ø§ØªØ¨Ùƒ|Ù…Ø±ØªØ¨Ùƒ|Ù…ØµØ±ÙˆÙØ§ØªÙƒ|Ù…ØµØ§Ø±ÙŠÙÙƒ|Ù…Ø¯Ø®Ø±Ø§ØªÙƒ)",
+    r"|(?:كم|ما هو|ما هي|اخبرني|أخبرني|زودني|ارسل|أرسل)[^.؟\n]{0,30}(?:دخلك|راتبك|مرتبك|مصروفاتك|مصاريفك|مدخراتك)",
     re.IGNORECASE)
 USE_RECORDS = {
     "en": "The user's income, expenses, savings and goals are already in the verified figures above. Do not ask "
           "for them: answer the question using those figures.",
-    "ar": "Ø¯Ø®Ù„ Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù… ÙˆÙ…ØµØ±ÙˆÙØ§ØªÙ‡ ÙˆÙ…Ø¯Ø®Ø±Ø§ØªÙ‡ ÙˆØ£Ù‡Ø¯Ø§ÙÙ‡ Ù…ÙˆØ¬ÙˆØ¯Ø© ÙÙŠ Ø§Ù„Ø£Ø±Ù‚Ø§Ù… Ø§Ù„Ù…ÙˆØ«Ù‚Ø© Ø£Ø¹Ù„Ø§Ù‡. Ù„Ø§ ØªØ³Ø£Ù„ Ø¹Ù†Ù‡Ø§: Ø£Ø¬Ø¨ Ø¹Ù† Ø§Ù„Ø³Ø¤Ø§Ù„ "
-          "Ø¨Ø§Ø³ØªØ®Ø¯Ø§Ù… Ù‡Ø°Ù‡ Ø§Ù„Ø£Ø±Ù‚Ø§Ù….",
+    "ar": "دخل المستخدم ومصروفاته ومدخراته وأهدافه موجودة في الأرقام الموثقة أعلاه. لا تسأل عنها: أجب عن السؤال "
+          "باستخدام هذه الأرقام.",
 }
 
 
@@ -602,13 +602,13 @@ def _asks_for_records(text):
 
 def _drop_record_requests(text):
     """The answer without sentences that ask for figures the records already hold."""
-    sentences = re.split(r"(?<=[.?!ØŸ])\s+", text or "")
+    sentences = re.split(r"(?<=[.?!؟])\s+", text or "")
     kept = [x for x in sentences if not ASKS_FOR_RECORDS.search(x)]
     return " ".join(kept).strip()
 
 
 PLAN_REFERENCE = re.compile(r"\b(?:it|this|that|the purchase|buying|buy|worth|afford)\b|"
-                            r"(?<=[Ø¡-ÙŠ])(?:Ù‡Ø§|Ù‡)(?![Ø¡-ÙŠ])|(?<![Ø¡-ÙŠ])(?:Ø¯Ù‡|Ø¯Ø§|Ø¯ÙŠ|Ø§Ù„Ø´Ø±Ø§Ø¡|ÙŠØ³ØªØ§Ù‡Ù„|ØªØ³ØªØ§Ù‡Ù„|ÙŠØ³ØªØ­Ù‚)(?![Ø¡-ÙŠ])")
+                            r"(?<=[ء-ي])(?:ها|ه)(?![ء-ي])|(?<![ء-ي])(?:ده|دا|دي|الشراء|يستاهل|تستاهل|يستحق)(?![ء-ي])")
 
 
 def _plan_in_question(question, history, user_id, language):
