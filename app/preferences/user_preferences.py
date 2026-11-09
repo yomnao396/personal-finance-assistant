@@ -1,5 +1,5 @@
 # app/preferences/user_preferences.py
-# NEW FILE — user-defined ESSENTIAL (protected) vs FLEXIBLE expenses.
+# Manages user-defined essential (protected) and flexible expense preferences.
 #
 # These preferences are RUNTIME CONSTRAINTS on the Recommendation Engine.
 # They are NOT model targets: changing them changes the plan immediately and
