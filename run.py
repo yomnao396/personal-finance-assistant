@@ -4,7 +4,7 @@
 from app.database.schema import create_tables
 from app.ml.recommendation_model import MODEL_PATH
 from scripts.seed_sample import seed
- 
+
 if __name__ == "__main__":
     create_tables()
     seed()
