@@ -1,8 +1,3 @@
-# streamlit_app.py
-# The user interface. Run the API first (uvicorn app.api.main:app), then:
-#   streamlit run streamlit_app.py
-# Pages live in ui/views/, texts in ui/i18n.py (English + Arabic), styling in ui/theme.py.
-
 import streamlit as st
 
 from ui import api, theme
@@ -58,9 +53,7 @@ def _profile_picker():
     if current not in ids:
         current = ids[0]
         st.session_state["user_id"] = current
-    # The real choice lives in st.session_state["user_id"] and is pushed into the
-    # widget on every run: its translated labels change with the language, which
-    # Streamlit may treat as a brand-new widget, so the widget must never own it.
+    
     st.session_state["profile_picker"] = current
     st.markdown(f"**{t('sidebar.profile')}**")
     st.selectbox("profile", ids, key="profile_picker", format_func=labels.get,
@@ -82,7 +75,7 @@ def sidebar(status):
 
         _profile_picker()
 
-        st.session_state["nav"] = st.session_state["page"]   # same pattern as the profile
+        st.session_state["nav"] = st.session_state["page"]   
         st.radio("pages", list(PAGES), key="nav", on_change=_switch_page,
                  format_func=lambda p: t(f"nav.{p}"), label_visibility="collapsed")
 
